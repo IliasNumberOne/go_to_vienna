@@ -1,0 +1,16 @@
+export 'main_screen/main_view.dart';
+export 'full_screen/full_view.dart';
+export 'category_screen/category_view.dart';
+export 'category_screen/category_model.dart';
+export 'favorites_screen/favorites_view.dart';
+export 'favorites_screen/favorites_model.dart';
+export 'random_screen/random_view.dart';
+export 'random_count_screen/random_count_view.dart';
+export 'random_items_screen/random_items_view.dart';
+export 'random_items_screen/random_items_model.dart';
+export 'top_screen/top_view.dart';
+export 'top_screen/top_model.dart';
+export 'settings_screen/settings_view.dart';
+export 'premium_screen/premium_view.dart';
+export 'main_screen/main_model.dart';
+export 'on_board_screen/on_board_view.dart';
