@@ -5,10 +5,10 @@ import 'package:go_router/go_router.dart';
 class SplashScreen extends StatefulWidget {
   const SplashScreen({
     super.key,
-    this.initScreen,
+    required this.initScreen,
   });
 
-  final int? initScreen;
+  final bool initScreen;
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -18,11 +18,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    final path = widget.initScreen == 0 || widget.initScreen == null
-        ? '/on_boarding_screen'
-        : '/';
+    final path = widget.initScreen
+        ? '/'
+        : '/on_boarding_screen';
     Future.delayed(const Duration(milliseconds: 500), () {
-      context.go('/');
+      context.go(path);
     });
   }
 

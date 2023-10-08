@@ -11,8 +11,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preference = await SharedPreferences.getInstance();
-  int? initScreen = preference.getInt('isFirstEntryKey');
-  await preference.setInt('isFirstEntryKey', 1);
+  final PreferenceService preferenceService = PreferenceService(preference);
+  bool initScreen = preferenceService.getIsFirstEntry();
+  await preferenceService.setIsFirstEntry();
   runApp(
     ScreenUtilInit(
       designSize: const Size(390, 844),
@@ -28,11 +29,13 @@ void main() async {
 
 class GoToVienna extends StatefulWidget {
   final SharedPreferences preferences;
-  final int? initScreen;
+  final bool initScreen;
 
-  const GoToVienna(
-      {Key? key, required this.preferences, required this.initScreen})
-      : super(key: key);
+  const GoToVienna({
+    Key? key,
+    required this.preferences,
+    required this.initScreen,
+  }) : super(key: key);
 
   @override
   State<GoToVienna> createState() => _GoToViennaState();

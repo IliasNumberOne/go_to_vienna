@@ -33,7 +33,7 @@ class PremiumScreen extends StatelessWidget {
                   style: TextStyles.dark27,
                 ),
                 GestureDetector(
-                  onTap: () => context.go('/'),
+                  onTap: context.pop,
                   child: Container(
                     width: 33.w,
                     height: 32.h,

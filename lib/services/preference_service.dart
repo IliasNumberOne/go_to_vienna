@@ -13,11 +13,11 @@ class PreferenceService {
     preferences.clear();
   }
 
-  int getIsFirstEntry() {
-    return preferences.getInt(isFirstEntryKey) ?? 0;
+  bool getIsFirstEntry() {
+    return preferences.getBool(isFirstEntryKey) ?? false;
   }
-  Future<void> setIsFirstEntry(int value) async {
-    await preferences.setInt(isFirstEntryKey, value);
+  Future<void> setIsFirstEntry() async {
+    await preferences.setBool(isFirstEntryKey, true);
   }
 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_to_vienna/screens/premium_screen/premium_view.dart';
 import 'package:go_to_vienna/services/preference_service.dart';
 import 'package:go_to_vienna/utils/utils.dart';
 import 'package:provider/provider.dart';
@@ -61,7 +62,7 @@ class SettingsScreen extends StatelessWidget {
           Visibility(
             visible: !context.read<PreferenceService>().getIsPremium(),
             child: GestureDetector(
-              onTap: () => {context.go('/premium_screen')},
+              onTap: () => _onTapPremium(context),
               child: Container(
                 width: 332.w,
                 height: 122.h,
@@ -99,5 +100,13 @@ class SettingsScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onTapPremium(BuildContext context) {
+    final route = MaterialPageRoute(
+      builder: (context) => PremiumScreen(),
+    );
+
+    Navigator.of(context, rootNavigator: true).push(route);
   }
 }
