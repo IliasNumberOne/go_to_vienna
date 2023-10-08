@@ -33,6 +33,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    final overlay = MediaQuery.of(context).padding;
     return Consumer<TopModel>(
       builder: (
           BuildContext context,
@@ -51,24 +52,29 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   height: topModel.isVisible ? 80.h : 0,
                   curve: Curves.easeInOut,
                   child: Container(
-                    height: 80.h,
+                    height: 62.h + overlay.bottom,
                     padding: EdgeInsets.symmetric(horizontal: 24.w),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: List.generate(
-                        tapBarItems.length,
-                            (index) {
-                          return GestureDetector(
-                            onTap: () => _onTap(index, tapBarItems[index].path),
-                            child: Image.asset(
-                              index == _selected
-                                  ? tapBarItems[index].selectedImg
-                                  : tapBarItems[index].regularImg,
-                              width: 52.w,
-                              height: 52.h,
-                            ),
-                          );
-                        },
+                    alignment: Alignment.topCenter,
+                    child: SizedBox(
+                      height: 62.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: List.generate(
+                          tapBarItems.length,
+                              (index) {
+                            return GestureDetector(
+                              onTap: () => _onTap(index, tapBarItems[index].path),
+                              child: Image.asset(
+                                index == _selected
+                                    ? tapBarItems[index].selectedImg
+                                    : tapBarItems[index].regularImg,
+                                width: 52.w,
+                                height: 52.h,
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),

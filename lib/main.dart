@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_to_vienna/screens/screens.dart';
+import 'package:go_to_vienna/screens/splash_screen.dart';
 import 'package:go_to_vienna/services/preference_service.dart';
 import 'package:go_to_vienna/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,9 @@ class GoToVienna extends StatefulWidget {
   final SharedPreferences preferences;
   final int? initScreen;
 
-  const GoToVienna({Key? key, required this.preferences, required this.initScreen}) : super(key: key);
+  const GoToVienna(
+      {Key? key, required this.preferences, required this.initScreen})
+      : super(key: key);
 
   @override
   State<GoToVienna> createState() => _GoToViennaState();
@@ -42,8 +45,18 @@ class _GoToViennaState extends State<GoToVienna> {
   void initState() {
     super.initState();
     _router = GoRouter(
-      initialLocation: widget.initScreen == 0 || widget.initScreen == null ? '/on_boarding_screen' : '/',
+      initialLocation: '/splash_screen',
       routes: [
+        GoRoute(
+          path: '/splash_screen',
+          pageBuilder: (context, state) {
+            return buildPageWithDefaultTransition(
+              context: context,
+              state: state,
+              child: SplashScreen(initScreen: widget.initScreen),
+            );
+          },
+        ),
         ShellRoute(
           pageBuilder: (context, state, child) {
             final hasBottomBar = (state.fullPath != '/full_screen/:id' &&
@@ -54,8 +67,8 @@ class _GoToViennaState extends State<GoToVienna> {
               context: context,
               state: state,
               child: BottomNavigation(
-                child: child,
                 hasBottomBar: hasBottomBar,
+                child: child,
               ),
             );
           },
@@ -66,7 +79,7 @@ class _GoToViennaState extends State<GoToVienna> {
                 return buildPageWithDefaultTransition(
                   context: context,
                   state: state,
-                  child: MainScreen(),
+                  child: const MainScreen(),
                 );
               },
               routes: [
@@ -76,7 +89,7 @@ class _GoToViennaState extends State<GoToVienna> {
                     return buildPageWithDefaultTransition(
                       context: context,
                       state: state,
-                      child: CategoryScreen(),
+                      child: const CategoryScreen(),
                     );
                   },
                 ),
@@ -101,7 +114,7 @@ class _GoToViennaState extends State<GoToVienna> {
                 return buildPageWithDefaultTransition(
                   context: context,
                   state: state,
-                  child: FavoritesScreen(),
+                  child: const FavoritesScreen(),
                 );
               },
             ),
@@ -111,7 +124,7 @@ class _GoToViennaState extends State<GoToVienna> {
                 return buildPageWithDefaultTransition(
                   context: context,
                   state: state,
-                  child: TopScreen(),
+                  child: const TopScreen(),
                 );
               },
             ),
@@ -121,7 +134,7 @@ class _GoToViennaState extends State<GoToVienna> {
                 return buildPageWithDefaultTransition(
                   context: context,
                   state: state,
-                  child: RandomScreen(),
+                  child: const RandomScreen(),
                 );
               },
               routes: [
@@ -159,14 +172,14 @@ class _GoToViennaState extends State<GoToVienna> {
               ],
             ),
             GoRoute(
-                path: '/settings',
-                pageBuilder: (context, state) {
-                  return buildPageWithDefaultTransition(
-                    context: context,
-                    state: state,
-                    child: SettingsScreen(),
-                  );
-                },
+              path: '/settings',
+              pageBuilder: (context, state) {
+                return buildPageWithDefaultTransition(
+                  context: context,
+                  state: state,
+                  child: SettingsScreen(),
+                );
+              },
             ),
           ],
         ),
@@ -186,7 +199,7 @@ class _GoToViennaState extends State<GoToVienna> {
             return buildPageWithDefaultTransition(
               context: context,
               state: state,
-              child: OnBoardingScreen(),
+              child: const OnBoardingScreen(),
             );
           },
         ),
