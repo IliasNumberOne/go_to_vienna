@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_to_vienna/providers/place_provider.dart';
 import 'package:go_to_vienna/screens/screens.dart';
 import 'package:go_to_vienna/screens/splash_screen.dart';
 import 'package:go_to_vienna/services/preference_service.dart';
@@ -219,32 +220,7 @@ class _GoToViennaState extends State<GoToVienna> {
                 PreferenceService(widget.preferences),
           ),
           ChangeNotifierProvider(
-            create: (context) => MainModel(
-              preferenceService: context.read<PreferenceService>(),
-            )..getRandomItems(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => CategoryModel(
-              preferenceService: context.read<PreferenceService>(),
-            ),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => CategoryCardModel(
-              preferenceService: context.read<PreferenceService>(),
-            ),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => FavoritesModel(
-              preferenceService: context.read<PreferenceService>(),
-            ),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => RandomItemsModel(
-              preferenceService: context.read<PreferenceService>(),
-            ),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => TopModel(
+            create: (context) => PlaceProvider(
               preferenceService: context.read<PreferenceService>(),
             ),
           ),

@@ -9,29 +9,30 @@ class PreferenceService {
   static const isPremiumKey = 'isPremiumKey';
   static const isFirstEntryKey = 'isFirstEntryKey';
 
-  void cleanCasch() {
-    preferences.clear();
-  }
-
   bool getIsFirstEntry() {
     return preferences.getBool(isFirstEntryKey) ?? false;
   }
+
   Future<void> setIsFirstEntry() async {
     await preferences.setBool(isFirstEntryKey, true);
   }
 
-
-  List<String> getFavorites() {
-    final List<String> basicFavorites = List.generate(categoryItems.length, (index) => 'false');
-    return preferences.getStringList(favoritesKey) ?? basicFavorites;
+  List<int> getFavorites() {
+    final map = preferences.getStringList(favoritesKey) ?? [];
+    if(map.isEmpty) return [];
+    final favorites = map.map((e) => int.parse(e)).toList();
+    return favorites;
   }
-  Future<void> setFavorites(List<String> value) async{
-    await preferences.setStringList(favoritesKey, value);
+
+  Future<void> setFavorites(List<int> favorites) async{
+    final map = favorites.map((e) => e.toString()).toList();
+    await preferences.setStringList(favoritesKey, map);
   }
 
   bool getIsPremium() {
     return preferences.getBool(isPremiumKey) ?? false;
   }
+
   Future<void> setIsPremium(bool value) async {
     await preferences.setBool(isPremiumKey, value);
   }

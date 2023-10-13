@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_to_vienna/providers/place_provider.dart';
 import 'package:go_to_vienna/screens/category_screen/category_model.dart';
 import 'package:go_to_vienna/utils/utils.dart';
 import 'package:go_to_vienna/widgets/widgets.dart';
@@ -10,10 +11,10 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CategoryModel>(
+    return Consumer<PlaceProvider>(
       builder: (
         BuildContext context,
-        CategoryModel categoryModel,
+          PlaceProvider provider,
         Widget? child,
       ) {
         return Padding(
@@ -26,7 +27,7 @@ class CategoryScreen extends StatelessWidget {
                   SizedBox(
                     width: 72.w,
                   ),
-                  Text(categories[categoryModel.index].name,
+                  Text(categories[0].name,
                       textAlign: TextAlign.center, style: TextStyles.dark19),
                   const Spacer(),
                 ],

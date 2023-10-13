@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:go_to_vienna/screens/premium_screen/premium_view.dart';
+import 'package:go_to_vienna/screens/premium_view.dart';
 import 'package:go_to_vienna/services/preference_service.dart';
 import 'package:go_to_vienna/utils/utils.dart';
 import 'package:provider/provider.dart';
