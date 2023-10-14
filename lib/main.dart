@@ -1,17 +1,28 @@
+import 'package:apphud/apphud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_to_vienna/providers/place_provider.dart';
+import 'package:go_to_vienna/providers/top_model.dart';
 import 'package:go_to_vienna/screens/screens.dart';
 import 'package:go_to_vienna/screens/splash_screen.dart';
 import 'package:go_to_vienna/services/preference_service.dart';
 import 'package:go_to_vienna/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+Future<void> launchUri(String url) async {
+  if (!await launchUrl(Uri.parse(url))) {
+    throw Exception('Could not launch $url');
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final preference = await SharedPreferences.getInstance();
+
+  await Apphud.start(apiKey: 'app_YrjhdGdTA14xSZX6m8yWFKqhawBfXQ');
   final PreferenceService preferenceService = PreferenceService(preference);
   bool initScreen = preferenceService.getIsFirstEntry();
   await preferenceService.setIsFirstEntry();
@@ -20,7 +31,7 @@ void main() async {
       designSize: const Size(390, 844),
       builder: (context, child) {
         return GoToVienna(
-          preferences: preference,
+          preferenceService: preferenceService,
           initScreen: initScreen,
         );
       },
@@ -29,12 +40,12 @@ void main() async {
 }
 
 class GoToVienna extends StatefulWidget {
-  final SharedPreferences preferences;
+  final PreferenceService preferenceService;
   final bool initScreen;
 
   const GoToVienna({
     Key? key,
-    required this.preferences,
+    required this.preferenceService,
     required this.initScreen,
   }) : super(key: key);
 
@@ -63,10 +74,7 @@ class _GoToViennaState extends State<GoToVienna> {
         ),
         ShellRoute(
           pageBuilder: (context, state, child) {
-            final hasBottomBar = (state.fullPath != '/full_screen/:id' &&
-                state.fullPath != '/category_screen' &&
-                state.fullPath != '/random/random_count' &&
-                state.fullPath != '/premium_screen');
+            final hasBottomBar = !state.fullPath!.contains('full_screen');
             return buildPageWithDefaultTransition(
               context: context,
               state: state,
@@ -88,32 +96,40 @@ class _GoToViennaState extends State<GoToVienna> {
               },
               routes: [
                 GoRoute(
-                  path: 'category_screen',
-                  pageBuilder: (context, state) {
-                    return buildPageWithDefaultTransition(
-                      context: context,
-                      state: state,
-                      child: const CategoryScreen(),
-                    );
-                  },
-                ),
-                GoRoute(
-                  name: 'full_screen',
-                  path: 'full_screen/:id',
-                  pageBuilder: (context, state) {
-                    return buildPageWithDefaultTransition(
-                      context: context,
-                      state: state,
-                      child: FullScreen(
-                        id: int.parse(state.pathParameters['id']!),
+                    path: 'category_screen',
+                    pageBuilder: (context, state) {
+                      return buildPageWithDefaultTransition(
+                        context: context,
+                        state: state,
+                        child: const CategoryScreen(),
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'full_screen',
+                        pageBuilder: (context, state) {
+                          return buildPageWithDefaultTransition(
+                            context: context,
+                            state: state,
+                            child: const FullScreen(),
+                          );
+                        },
                       ),
+                    ]),
+                GoRoute(
+                  path: 'full_screen',
+                  pageBuilder: (context, state) {
+                    return buildPageWithDefaultTransition(
+                      context: context,
+                      state: state,
+                      child: const FullScreen(),
                     );
                   },
                 ),
               ],
             ),
             GoRoute(
-              path: '/favorite',
+              path: '/favorites_screen',
               pageBuilder: (context, state) {
                 return buildPageWithDefaultTransition(
                   context: context,
@@ -121,6 +137,18 @@ class _GoToViennaState extends State<GoToVienna> {
                   child: const FavoritesScreen(),
                 );
               },
+              routes: [
+                GoRoute(
+                  path: 'full_screen',
+                  pageBuilder: (context, state) {
+                    return buildPageWithDefaultTransition(
+                      context: context,
+                      state: state,
+                      child: const FullScreen(),
+                    );
+                  },
+                ),
+              ],
             ),
             GoRoute(
               path: '/top',
@@ -143,33 +171,36 @@ class _GoToViennaState extends State<GoToVienna> {
               },
               routes: [
                 GoRoute(
-                  name: 'random_count',
-                  path: 'random_count/:id',
+                  path: 'random_count',
                   pageBuilder: (context, state) {
                     return buildPageWithDefaultTransition(
                       context: context,
                       state: state,
-                      child: RandomCountScreen(
-                        id: int.parse(state.pathParameters['id']!),
-                      ),
+                      child: const RandomCountScreen(),
                     );
                   },
                   routes: [
                     GoRoute(
-                      name: 'random_items',
-                      path: 'random_items/:count',
+                      path: 'category_screen',
                       pageBuilder: (context, state) {
                         return buildPageWithDefaultTransition(
                           context: context,
                           state: state,
-                          child: RandomItemsScreen(
-                            count: int.parse(
-                              state.pathParameters['count']!,
-                            ),
-                            id: int.parse(state.pathParameters['id']!),
-                          ),
+                          child: const CategoryScreen(),
                         );
                       },
+                      routes: [
+                        GoRoute(
+                          path: 'full_screen',
+                          pageBuilder: (context, state) {
+                            return buildPageWithDefaultTransition(
+                              context: context,
+                              state: state,
+                              child: const FullScreen(),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -181,7 +212,7 @@ class _GoToViennaState extends State<GoToVienna> {
                 return buildPageWithDefaultTransition(
                   context: context,
                   state: state,
-                  child: SettingsScreen(),
+                  child: const SettingsScreen(),
                 );
               },
             ),
@@ -216,13 +247,15 @@ class _GoToViennaState extends State<GoToVienna> {
     return MultiProvider(
         providers: [
           Provider(
-            create: (BuildContext context) =>
-                PreferenceService(widget.preferences),
+            create: (BuildContext context) => widget.preferenceService,
           ),
           ChangeNotifierProvider(
             create: (context) => PlaceProvider(
-              preferenceService: context.read<PreferenceService>(),
-            ),
+              preferenceService: widget.preferenceService,
+            )..init(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => TopModel(),
           ),
         ],
         builder: (BuildContext context, Widget? child) {

@@ -61,9 +61,9 @@ final List<Category> categories2 = [
   ),
 ];
 
-final List<CategoryItem> categoryItems = [
+final List<Place> allPlaces = [
   /*--where to go--*/
-  const CategoryItem(
+  const Place(
     id: 0,
     title: 'Schönbrunn Palace and its park',
     text:
@@ -72,7 +72,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 1,
     title: "The Belvedere Palace and Gardens",
     text:
@@ -81,7 +81,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 2,
     title: "Innere Stadt",
     text:
@@ -90,7 +90,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 3,
     title: "Albertina - Museum of Fine Arts.",
     text:
@@ -99,7 +99,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 4,
     title: "Naturhistorisches Museum",
     text:
@@ -108,7 +108,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 5,
     title: "Kunsthistorisches Museum",
     text:
@@ -117,7 +117,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 6,
     title: "Salzburg Cathedral",
     text:
@@ -126,7 +126,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 7,
     title: "Prater Park",
     text:
@@ -135,7 +135,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 8,
     title: "Schloss Belvedere",
     text:
@@ -144,7 +144,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 9,
     title: "Mozart's House",
     text:
@@ -153,7 +153,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 10,
     title: "Vienna State Opera",
     text:
@@ -162,7 +162,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 11,
     title: "Haydn Monument",
     text:
@@ -171,7 +171,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 12,
     title: "Austrian National Library",
     text:
@@ -180,7 +180,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 13,
     title: "Leopold Museum",
     text:
@@ -189,7 +189,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 0,
   ),
-  const CategoryItem(
+  const Place(
     id: 14,
     title: "St. Stephen's Cathedral",
     text:
@@ -200,7 +200,7 @@ final List<CategoryItem> categoryItems = [
   ),
 
   /*--what to do--*/
-  const CategoryItem(
+  const Place(
     id: 15,
     title: "Kärntner Straße",
     text:
@@ -209,7 +209,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 16,
     title: "Visiting Vienna's coffee houses",
     text:
@@ -218,7 +218,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 17,
     title: "Take a look around Vienna's Christmas markets",
     text:
@@ -227,7 +227,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 18,
     title: "Take a ride in a fiacre",
     text:
@@ -236,7 +236,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 19,
     title: "Exploring Graben and Stephansplatz for a photoshoot",
     text:
@@ -245,7 +245,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 20,
     title: "Visiting the Hofburg Palace",
     text:
@@ -254,7 +254,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 21,
     title: "Taking a stroll along the Danube Canal",
     text:
@@ -263,7 +263,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 22,
     title: "Visiting the Chocolate and Marzipan Museum",
     text:
@@ -272,7 +272,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 23,
     title: "Embarking on a wine tour through the vineyards and wineries",
     text:
@@ -281,7 +281,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 24,
     title: "Spending a day at Prater Park",
     text:
@@ -290,7 +290,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 25,
     title: "Visiting Schönbrunn Zoo",
     text:
@@ -299,7 +299,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 26,
     title: "Exploring the art of modernism at the Leopold Museum",
     text:
@@ -308,7 +308,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 27,
     title: "Exploring Vienna by bicycle",
     text:
@@ -317,7 +317,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 28,
     title: "Visiting the Vienna State Opera",
     text:
@@ -326,7 +326,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 1,
   ),
-  const CategoryItem(
+  const Place(
     id: 29,
     title: "Exploring the history of Austria at the Museum",
     text:
@@ -337,7 +337,7 @@ final List<CategoryItem> categoryItems = [
   ),
 
   /*--where to eat--*/
-  const CategoryItem(
+  const Place(
     id: 30,
     title: "Café Central",
     text:
@@ -346,7 +346,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 31,
     title: "Figlmüller",
     text:
@@ -355,7 +355,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 32,
     title: "Naschmarkt",
     text:
@@ -364,7 +364,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 33,
     title: "Plachutta",
     text:
@@ -373,7 +373,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 34,
     title: "Steirereck",
     text:
@@ -382,7 +382,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 35,
     title: "Motto am Fluss",
     text:
@@ -391,7 +391,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 36,
     title: "Zum Schwarzen Kameel",
     text:
@@ -400,7 +400,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 37,
     title: "Skopik & Lohn",
     text:
@@ -409,7 +409,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 38,
     title: "Sachertorte",
     text:
@@ -418,7 +418,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 39,
     title: "Café Sperl",
     text:
@@ -427,7 +427,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 40,
     title: "Vollpension",
     text:
@@ -436,7 +436,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 41,
     title: "Café Hawelka",
     text:
@@ -445,7 +445,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 42,
     title: "Hollmann Salon",
     text:
@@ -454,7 +454,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 2,
   ),
-  const CategoryItem(
+  const Place(
     id: 43,
     title: "ON Restaurant",
     text:
@@ -465,7 +465,7 @@ final List<CategoryItem> categoryItems = [
   ),
 
   /*--where to sleep--*/
-  const CategoryItem(
+  const Place(
     id: 44,
     title: "Hotel Sacher Wien",
     text:
@@ -474,7 +474,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 45,
     title: "The Ritz-Carlton, Vienna",
     text:
@@ -483,7 +483,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 46,
     title: "Park Hyatt Vienna",
     text:
@@ -492,7 +492,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 47,
     title: "Hotel Imperial, a Luxury Collection Hotel",
     text:
@@ -501,7 +501,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 48,
     title: "Palais Hansen Kempinski Vienna",
     text:
@@ -510,7 +510,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 49,
     title: "Hotel Bristol, a Luxury Collection Hotel",
     text:
@@ -519,7 +519,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 50,
     title: "Das Triest Hotel",
     text:
@@ -528,7 +528,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 51,
     title: "Motel One Vienna-Hauptbahnhof",
     text:
@@ -537,7 +537,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 52,
     title: "Hotel Daniel Vienna",
     text:
@@ -546,7 +546,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 53,
     title: "Ruby Marie Hotel Vienna",
     text:
@@ -555,7 +555,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 54,
     title: "Wombat's City Hostels Vienna",
     text:
@@ -564,7 +564,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 55,
     title: "A&O Wien Stadthalle",
     text:
@@ -573,7 +573,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 56,
     title: "NH Collection Wien Zentrum",
     text:
@@ -582,7 +582,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 57,
     title: "Hotel Spiess & Spiess",
     text:
@@ -591,7 +591,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 3,
   ),
-  const CategoryItem(
+  const Place(
     id: 58,
     title: "Hotel Wandl",
     text:
@@ -602,7 +602,7 @@ final List<CategoryItem> categoryItems = [
   ),
 
   /*--places--*/
-  const CategoryItem(
+  const Place(
     id: 59,
     title: "Hundertwasserhaus",
     text:
@@ -611,7 +611,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 60,
     title: "Prater",
     text:
@@ -620,7 +620,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 61,
     title: "Kunst Haus Wien",
     text:
@@ -629,7 +629,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 62,
     title: "Schmetterlinghaus",
     text:
@@ -638,7 +638,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 63,
     title: "Museum of Contraception and Abortion",
     text:
@@ -647,7 +647,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 64,
     title: "Zig Zag: The Museum of Torture",
     text:
@@ -656,7 +656,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 65,
     title: "The Third Man Museum",
     text:
@@ -665,7 +665,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 66,
     title: "Giant Ferris Wheel",
     text:
@@ -674,7 +674,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 67,
     title: "Clock Museum",
     text:
@@ -683,7 +683,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 68,
     title: "Vikings: Beyond the Legend Exhibition",
     text:
@@ -692,7 +692,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: false,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 69,
     title: "Madame Tussauds Vienna",
     text:
@@ -701,7 +701,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 70,
     title: "Krypt Bar",
     text:
@@ -710,7 +710,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 71,
     title: "Bunkerei Augarten",
     text:
@@ -719,7 +719,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 72,
     title: "The Vienna Cat Cafe",
     text:
@@ -728,7 +728,7 @@ final List<CategoryItem> categoryItems = [
     isPremium: true,
     category: 4,
   ),
-  const CategoryItem(
+  const Place(
     id: 73,
     title: "Globe Museum",
     text:
@@ -749,7 +749,7 @@ final List<TapBar> tapBarItems = [
       id: 1,
       regularImg: "assets/images/icons/favorite.png",
       selectedImg: "assets/images/icons/favorite_red.png",
-      path: '/favorite'),
+      path: '/favorites_screen'),
   const TapBar(
       id: 2,
       regularImg: "assets/images/icons/top.png",

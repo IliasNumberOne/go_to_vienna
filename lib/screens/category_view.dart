@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:go_to_vienna/providers/place_provider.dart';
-import 'package:go_to_vienna/screens/category_screen/category_model.dart';
+import 'package:go_to_vienna/screens/screens.dart';
 import 'package:go_to_vienna/utils/utils.dart';
 import 'package:go_to_vienna/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ class CategoryScreen extends StatelessWidget {
     return Consumer<PlaceProvider>(
       builder: (
         BuildContext context,
-          PlaceProvider provider,
+        PlaceProvider provider,
         Widget? child,
       ) {
         return Padding(
@@ -23,25 +24,43 @@ class CategoryScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  BackBtn(myContext: context),
+                  BackBtn(),
                   SizedBox(
                     width: 72.w,
                   ),
-                  Text(categories[0].name,
-                      textAlign: TextAlign.center, style: TextStyles.dark19),
+                  Text(
+                    provider.selectedCategory.name,
+                    textAlign: TextAlign.center,
+                    style: TextStyles.dark19,
+                  ),
                   const Spacer(),
                 ],
               ),
               SizedBox(height: 30.h),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      categoryModel.items.length,
-                      (index) => CategoryCard(index: categoryModel.items[index]),
-                    ).withSpaceBetween(height: 12.h),
-                  ),
+                child: ListView.builder(
+                  itemCount: provider.places.length,
+                  itemBuilder: (context, index) {
+                    final place = provider.places[index];
+                    final locked = place.isPremium && !provider.isPremium;
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: 12.h),
+                      child: PlaceCard(
+                        place: place,
+                        locked: locked,
+                        onLike: () => provider.onLike(place.id),
+                        isFavorite: provider.favoritesId.contains(place.id),
+                        onTap: () {
+                          if(locked) {
+                            _onTapPremium(context);
+                            return;
+                          }
+                          provider.selectPlace(place);
+                          context.go('/category_screen/full_screen');
+                        },
+                      ),
+                    );
+                  },
                 ),
               ),
               SizedBox(height: 30.h),
@@ -50,5 +69,13 @@ class CategoryScreen extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _onTapPremium(BuildContext context) {
+    final route = MaterialPageRoute(
+      builder: (context) => PremiumScreen(),
+    );
+
+    Navigator.of(context, rootNavigator: true).push(route);
   }
 }

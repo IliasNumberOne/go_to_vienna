@@ -36,75 +36,79 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       backgroundColor: ThemeColors.white,
       body: SafeArea(
-        child: PageView(
-          controller: _controller,
-          onPageChanged: (int index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-          children: List.generate(
-            texts.length,
-            (index) => Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: 15.h),
-                SizedBox(
-                  width: 332.w,
-                  child: Text(
-                    "Travel with us",
-                    style: TextStyles.dark27,
-                  ),
-                ),
-                SizedBox(height: 16.h),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(32),
-                  child: Image.asset(
-                    'assets/images/on_boarding/image${index + 1}.png',
-                    width: 332.w,
-                    height: 364.h,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                SizedBox(height: 20.h),
-                SizedBox(
-                  width: 332.w,
-                  child: Expanded(
-                    child: Text(
-                      texts[index],
-                      style: TextStyles.dark19
-                          .copyWith(fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () => {
-                    if (currentIndex == texts.length - 1) {context.go('/')},
-                    _controller.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.ease),
-                  },
-                  child: Container(
-                    width: 332.w,
-                    height: 48.h,
-                    decoration: BoxDecoration(
-                      color: ThemeColors.red,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Center(
-                      child: Text(
-                        index + 1 == texts.length ? 'Start' : 'Next',
-                        textAlign: TextAlign.center,
-                        style: TextStyles.white15,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 58.h),
-              ],
+        child: Column(
+          children: [
+            SizedBox(height: 15.h),
+            SizedBox(
+              width: 332.w,
+              child: Text(
+                "Travel with us",
+                style: TextStyles.dark27,
+              ),
             ),
-          ),
+            SizedBox(height: 16.h),
+            Expanded(
+              child: PageView(
+                controller: _controller,
+                onPageChanged: (int index) {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                },
+                children: List.generate(
+                  texts.length,
+                  (index) => Column(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(32),
+                        child: Image.asset(
+                          'assets/images/on_boarding/image${index + 1}.png',
+                          width: 332.w,
+                          height: 364.h,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(height: 20.h),
+                      SizedBox(
+                        width: 332.w,
+                        child: Text(
+                          texts[index],
+                          style: TextStyles.dark19.copyWith(
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () => {
+                if (currentIndex == texts.length - 1) {context.go('/')},
+                _controller.nextPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.ease,
+                ),
+              },
+              child: Container(
+                width: 332.w,
+                height: 48.h,
+                decoration: BoxDecoration(
+                  color: ThemeColors.red,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: Text(
+                    currentIndex + 1 == texts.length ? 'Start' : 'Next',
+                    textAlign: TextAlign.center,
+                    style: TextStyles.white15,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 58.h),
+          ],
         ),
       ),
     );

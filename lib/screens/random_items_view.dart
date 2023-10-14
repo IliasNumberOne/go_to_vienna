@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_to_vienna/providers/place_provider.dart';
 import 'package:go_to_vienna/screens/screens.dart';
 import 'package:go_to_vienna/utils/utils.dart';
 import 'package:go_to_vienna/widgets/widgets.dart';
@@ -14,10 +15,10 @@ class RandomItemsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<RandomItemsModel>(
+    return Consumer<PlaceProvider>(
       builder: (
         BuildContext context,
-        RandomItemsModel randomItemsModel,
+          PlaceProvider value,
         Widget? child,
       ) {
         return Padding(
@@ -26,7 +27,7 @@ class RandomItemsScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  BackBtn(myContext: context),
+                  BackBtn(),
                   SizedBox(width: 72.w),
                   Text(
                     categories2[id].name,
@@ -37,19 +38,6 @@ class RandomItemsScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 30.h),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      count,
-                      (index) => CategoryCard(
-                        index: randomItemsModel.items[index],
-                      ),
-                    ).withSpaceBetween(height: 12.h),
-                  ),
-                ),
-              ),
               SizedBox(height: 30.h),
             ],
           ),

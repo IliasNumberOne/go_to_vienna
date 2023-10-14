@@ -4,13 +4,12 @@ import 'package:go_router/go_router.dart';
 import 'package:go_to_vienna/utils/utils.dart';
 
 class BackBtn extends StatelessWidget {
-  final BuildContext myContext;
-  const BackBtn({Key? key, required this.myContext}) : super(key: key);
+  const BackBtn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: myContext.pop,
+      onTap: context.pop,
       child: Container(
         width: 32.w,
         height: 32.h,

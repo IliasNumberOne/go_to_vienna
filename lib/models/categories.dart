@@ -10,7 +10,7 @@ class Category {
   });
 }
 
-class CategoryItem {
+class Place {
   final int id;
   final String title;
   final String text;
@@ -18,7 +18,7 @@ class CategoryItem {
   final bool isPremium;
   final int category;
 
-  const CategoryItem({
+  const Place({
     required this.id,
     required this.title,
     required this.text,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_to_vienna/screens/screens.dart';
+import 'package:go_router/go_router.dart';
+import 'package:go_to_vienna/providers/place_provider.dart';
 import 'package:go_to_vienna/utils/utils.dart';
 import 'package:go_to_vienna/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -10,37 +11,50 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<FavoritesModel>(
+    return Consumer<PlaceProvider>(
       builder: (
         BuildContext context,
-        FavoritesModel favoritesModel,
+        PlaceProvider value,
         Widget? child,
       ) {
-        return Padding(
-          padding: EdgeInsets.only(top: 46.h, left: 28.w, right: 28.w),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Favorite',
-                textAlign: TextAlign.left,
-                style: TextStyles.dark27,
-              ),
-              SizedBox(height: 24.h),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      favoritesModel.getItems().length,
-                      (index) =>
-                          CategoryCard(index: favoritesModel.getItems()[index]),
-                    ).withSpaceBetween(height: 12.h),
+        return SafeArea(
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: 15.h,
+              left: 28.w,
+              right: 28.w,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Favorite',
+                  textAlign: TextAlign.left,
+                  style: TextStyles.dark27,
+                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: value.favorites.length,
+                    padding: EdgeInsets.symmetric(vertical: 24.h),
+                    itemBuilder: (context, index) {
+                      final place = value.favorites[index];
+                      return Padding(
+                        padding: EdgeInsets.only(bottom: 12.h),
+                        child: PlaceCard(
+                          isFavorite: true,
+                          onLike: () => value.onLike(place.id),
+                          onTap: () {
+                            value.selectPlace(place);
+                            context.go('/favorites_screen/full_screen');
+                          },
+                          place: place,
+                        ),
+                      );
+                    },
                   ),
                 ),
-              ),
-              SizedBox(height: 24.h),
-            ],
+              ],
+            ),
           ),
         );
       },
